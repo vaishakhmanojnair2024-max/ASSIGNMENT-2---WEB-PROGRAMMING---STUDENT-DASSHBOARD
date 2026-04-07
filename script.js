@@ -4,38 +4,42 @@ let interval;
 
 function updateClock() {
     let now = new Date();
-    let hours = now.getHours();
-    let minutes = now.getMinutes();
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    document.getElementById("clock").innerText = hours + ":" + minutes;
+    let h = now.getHours();
+    let m = now.getMinutes();
+    m = m < 10 ? "0" + m : m;
+    let clock = document.getElementById("clock");
+    if (clock) clock.innerText = h + ":" + m;
 
-    let greet = "Good Morning";
-    if (hours >= 12) greet = "Good Afternoon";
-    if (hours >= 18) greet = "Good Evening";
-    document.getElementById("greeting").innerText = greet;
+    let g = "Good Morning";
+    if (h >= 12) g = "Good Afternoon";
+    if (h >= 18) g = "Good Evening";
+    let greet = document.getElementById("greeting");
+    if (greet) greet.innerText = g;
 }
 setInterval(updateClock, 1000);
 
 function renderTasks() {
     let list = document.getElementById("taskList");
+    if (!list) return;
+
     list.innerHTML = "";
 
-    tasks.forEach((task, index) => {
+    tasks.forEach((t, i) => {
         let li = document.createElement("li");
 
         let text = document.createElement("span");
-        text.innerText = task.text;
-        if (task.done) text.classList.add("completed");
+        text.innerText = t.text;
+        if (t.done) text.classList.add("completed");
 
         text.onclick = function () {
-            tasks[index].done = !tasks[index].done;
+            tasks[i].done = !tasks[i].done;
             saveTasks();
         };
 
         let del = document.createElement("span");
         del.innerText = "❌";
         del.onclick = function () {
-            tasks.splice(index, 1);
+            tasks.splice(i, 1);
             saveTasks();
         };
 
@@ -47,10 +51,12 @@ function renderTasks() {
 
 function addTask() {
     let input = document.getElementById("taskInput");
-    let value = input.value.trim();
-    if (value === "") return;
+    if (!input) return;
 
-    tasks.push({ text: value, done: false });
+    let v = input.value.trim();
+    if (v === "") return;
+
+    tasks.push({ text: v, done: false });
     input.value = "";
     saveTasks();
 }
@@ -81,23 +87,26 @@ function resetTimer() {
 }
 
 function updateTimer() {
-    let minutes = Math.floor(time / 60);
-    let seconds = time % 60;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-    document.getElementById("timer").innerText = minutes + ":" + seconds;
+    let m = Math.floor(time / 60);
+    let s = time % 60;
+    s = s < 10 ? "0" + s : s;
+    let t = document.getElementById("timer");
+    if (t) t.innerText = m + ":" + s;
 }
 
 function saveNotes() {
-    let notes = document.getElementById("notes").value;
-    localStorage.setItem("notes", notes);
+    let n = document.getElementById("notes");
+    if (n) localStorage.setItem("notes", n.value);
 }
 
 function loadNotes() {
+    let n = document.getElementById("notes");
+    if (!n) return;
     let saved = localStorage.getItem("notes");
-    if (saved) document.getElementById("notes").value = saved;
+    if (saved) n.value = saved;
 }
 
-updateTimer();
 renderTasks();
+updateTimer();
 loadNotes();
 updateClock();
