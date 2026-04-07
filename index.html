@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1 id="greeting"></h1>
+    <h2 id="clock"></h2>
+
+    <div class="section">
+        <h3>Tasks</h3>
+        <input type="text" id="taskInput" placeholder="Enter task">
+        <button onclick="addTask()">Add</button>
+        <ul id="taskList"></ul>
+    </div>
+
+    <div class="section">
+        <h3>Pomodoro Timer</h3>
+        <h2 id="timer">25:00</h2>
+        <button onclick="startTimer()">Start</button>
+        <button onclick="pauseTimer()">Pause</button>
+        <button onclick="resetTimer()">Reset</button>
+    </div>
+
+    <div class="section">
+        <h3>Notes</h3>
+        <textarea id="notes" placeholder="Write notes..."></textarea>
+        <button onclick="saveNotes()">Save</button>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+body {
+    font-family: Arial;
+    background: #111;
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.container {
+    width: 350px;
+    text-align: center;
+}
+
+.section {
+    background: #1e1e1e;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+input, textarea {
+    width: 80%;
+    padding: 8px;
+    margin-top: 10px;
+    border: none;
+    outline: none;
+}
+
+button {
+    padding: 8px;
+    margin-top: 10px;
+    background: #00adb5;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: #333;
+    margin: 10px 0;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}
